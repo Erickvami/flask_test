@@ -10,11 +10,11 @@ class Products():
     def getAllProducts(self):
         products = docs.find({})
         print(products)
-        return {'products':products,'message':'found '+ str(len(products)) + ' matches'}
+        return {'products':products,'message':'found '+ str(products.count()) + ' matches'}
     
     def getProductByName(self,product_name):
         products= docs.find({"name":product_name}).limit(1)
-        return {'products':products,'message':'found '+ str(len(products)) + ' matches'}
+        return {'products':products,'message':'found '+ str(products.count()) + ' matches'}
     
     def addProduct(self,newProduct):
         try:
