@@ -10,7 +10,7 @@ class Products():
     def getAllProducts(self):
         products = docs.find({})
         print(products)
-        return {'products':products,'message':'found '+ str(products.count()) + ' matches'}
+        return {'products':[]}#{'products':products,'message':'found '+ str(products.count()) + ' matches'}
     
     def getProductByName(self,product_name):
         products= docs.find({"name":product_name}).limit(1)
