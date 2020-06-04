@@ -2,7 +2,6 @@ from flask import jsonify,request
 from flask_restful import Resource
 from flask_expects_json import expects_json
 from Controllers.Instance import products,ProductBLL
-
 newProductModel = {
     'type':'object',
     'properties':{
@@ -19,45 +18,25 @@ class Products():
     class Default(Resource):
         #get all products
         def get(self):
-            return jsonify({'products':products,'message':'found '+ str(len(products)) + ' matches'})    
+            return jsonify(ProductBLL().getAllProducts())    
 
         #add new product
         @expects_json(newProductModel)
         def post(self):
-            # newProduct= ProductBLL().validateNewProduct(request.json)
             newProduct = request.json
-            products.append(newProduct)
-            return jsonify({'message':'product added successfully!',"products":products})            
-        
-        
-
+            return jsonify(ProductBLL().addProduct(newProduct))            
     
     #Transactions that require query on url by product name
     class QueryByProductName(Resource):
         #get specific product by product_name
         def get(self,product_name):
-            print(product_name)
-            resp = [p for p in products if p['name']==product_name]
-            return jsonify({'products':resp,'message':'found '+ str(len(resp)) + ' matches'})
+            return jsonify(ProductBLL().getProductByName(product_name))
 
         #update specific product by product name
         def put(self,product_name):
-            productFound = [p for p in products if p['name'] == product_name]
-            if productFound:
-                productFound[0]['name'] = request.json['name']
-                productFound[0]['price'] = request.json['price']
-                productFound[0]['quantity'] = request.json['quantity']
-                return jsonify({
-                    "message": 'Product updated',
-                    "product": productFound[0]
-                    })
-            return jsonify({"message":"product not found"})
+            return jsonify(ProductBLL().updateProduct(product_name,request.json)) 
 
         #delete specific product by product name
         def delete(self,product_name):
-            productFound = [p for p in products if p['name'] == product_name]
-            if productFound:
-                products.remove(productFound[0])
-                return jsonify({"message":"product deleted","products":products})
-            return jsonify({"message":"product not found"})
+            return jsonify(ProductBLL().removeProduct(product_name))
 
