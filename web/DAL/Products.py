@@ -21,7 +21,7 @@ class Products():
             docs.insert(newProduct)
             return {"message":'product added successfully!',"products":self.getAllProducts()}
         except:
-            return {"message":'Error:' + sys.exc_info()[0],"products":self.getAllProducts()}
+            return {"message":'Error:' + str(sys.exc_info()[0]),"products":self.getAllProducts()}
     
     def updateProduct(self,product_name,updatedProduct):
         try:
