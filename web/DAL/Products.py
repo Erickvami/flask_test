@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 import sys
 
-client= MongoClient('mongodb://27017') 
+client= MongoClient('mongodb://db:27017') 
 db= client.Storage
 docs = db['Products']
 class Products():
