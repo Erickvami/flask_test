@@ -6,6 +6,7 @@ class Products():
         self.products = self.db['Products']
     def getAllProducts(self):
         products = self.products.find({})
+        print(products)
         return {'products':products,'message':'found '+ str(len(products)) + ' matches'}
     
     def getProductByName(self,product_name):
