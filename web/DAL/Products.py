@@ -16,7 +16,7 @@ class Products():
     def getProductByName(self,product_name):
         products= list(db.product.find({"name":product_name},{'_id': False}).limit(1))
         # return {'products':products}
-        return {'products':products,'message':'found '+ str(products.count + ' matches'}
+        return {'products':products,'message':'found '+ str(products.count) + ' matches'}
     
     def addProduct(self,newProduct):
         try:
