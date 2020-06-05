@@ -25,7 +25,7 @@ class ProductBLL():
     def removeProduct(self,product_name):
         productFound = self.getProductByName(product_name)
         if productFound:
-            Products.removeProduct(product_name)
+            Products().removeProduct(product_name)
             return {"message":"product deleted","products":Products().getAllProducts()}
         return {"message":"product not found"}
         
