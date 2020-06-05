@@ -21,8 +21,8 @@ class Products():
         try:
             db.product.insert_one(newProduct)
             return {"message":'product added successfully!',"products":self.getAllProducts()}
-        except:
-            return {"message":'Error:' + str(sys.exc_info()[0]),"products":self.getAllProducts()}
+        except Exception as ex:
+            return {"message":'Error:' + str(ex.__dict__),"products":self.getAllProducts()}
     
     def updateProduct(self,product_name,updatedProduct):
         try:
