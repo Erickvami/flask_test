@@ -5,11 +5,11 @@ class ProductBLL():
 
     def getAllProducts(self):
         products= Products().getAllProducts()
-        return {'products':products,'message':'found '+ str(products.count()) + ' matches'} 
+        return {'products':products,'message':'found '+ str(len(products)) + ' matches'} 
     
     def getProductByName(self,product_name):
         products= Products().getProductByName(product_name)
-        return {'products':products,'message':'found '+ str(products.count()) + ' matches'} 
+        return {'products':products,'message':'found '+ str(len(products)) + ' matches'} 
     
     def addProduct(self,newProduct):
         dal= Products()
