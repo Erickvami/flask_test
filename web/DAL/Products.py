@@ -4,6 +4,8 @@ import sys
 client= MongoClient('mongodb://db:27017') 
 db= client.Storage
 docs = db['Products']
+docs.insert({"name":'x'})
+print(docs.find({}))
 class Products():
     def __init__(self):
         pass
