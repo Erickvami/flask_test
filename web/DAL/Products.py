@@ -9,12 +9,12 @@ class Products():
     def __init__(self):
         pass
     def getAllProducts(self):
-        products = list(db.product.find())
-        return {'products': str(products[0]) }
+        products = list(db.product.find({},{'_id': False}))
+        return {'products': products }
         # return {'products':products,'message':'found '+ str(products.count + ' matches'}
     
     def getProductByName(self,product_name):
-        products= list(db.product.find({"name":product_name}).limit(1))
+        products= list(db.product.find({"name":product_name},{'_id': False}).limit(1))
         return {'products':products}
         # return {'products':products,'message':'found '+ str(products.count + ' matches'}
     
