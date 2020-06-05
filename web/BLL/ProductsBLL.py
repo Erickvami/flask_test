@@ -4,28 +4,39 @@ class ProductBLL():
         return data
 
     def getAllProducts(self):
-        return Products().getAllProducts()
+        products= Products().getAllProducts()
+        return {'products':products,'message':'found '+ str(products.count()) + ' matches'} 
     
     def getProductByName(self,product_name):
-        return Products().getProductByName(product_name)
+        products= Products().getProductByName(product_name)
+        return {'products':products,'message':'found '+ str(products.count()) + ' matches'} 
     
     def addProduct(self,newProduct):
-        return Products().addProduct(newProduct)
-    
+        dal= Products()
+        if dal.addProduct(newProduct):
+            return {"message":'product added successfully!',"products":dal.getAllProducts()} 
+        
+        return {"message":'Error:',"products":dal.getAllProducts()}
+
     def updateProduct(self,product_name,updatedProduct):
-        productFound = self.getProductByName(product_name)
+        dal= Products()
+        productFound = dal.getProductByName(product_name)
         if productFound:
                 productFound[0]['name'] = updatedProduct['name']
                 productFound[0]['price'] = updatedProduct['price']
                 productFound[0]['quantity'] = updatedProduct['quantity']
-                return Products().updateProduct(product_name,updatedProduct)
+                if dal.updateProduct(product_name,updatedProduct):
+                    return {"message":'product updated',"product":productFound[0]}
+                return {"message":'Error:Can\'t finish transaction'}
         return {"message":"product not found"}
         
 
     def removeProduct(self,product_name):
-        productFound = self.getProductByName(product_name)
+        dal= Products()
+        productFound = dal.getProductByName(product_name)
         if productFound:
-            Products().removeProduct(product_name)
-            return {"message":"product deleted","products":Products().getAllProducts()}
+            if dal.removeProduct(product_name):
+                return {"message":"product deleted","products":dal.getAllProducts()}
+            return {"message":"Not found or can't be deleted","products":dal.getAllProducts()} 
         return {"message":"product not found"}
         
