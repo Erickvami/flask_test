@@ -9,7 +9,7 @@ class Products():
     def __init__(self):
         pass
     def getAllProducts(self):
-        products = list(db.product.find().collection)
+        products = list(db.product.find())
         return {'products':products}
         # return {'products':products,'message':'found '+ str(products.count + ' matches'}
     
@@ -30,7 +30,7 @@ class Products():
             db.product.update({"name":product_name},{'$set':updatedProduct})
             return {"message":'product updated',"product":self.getProductByName(product_name)}
         except:
-            return {"message":'Error:' + sys.exc_info()[0]}        
+            return {"message":'Error:'}        
     def removeProduct(self,product_name):
         try:
             db.product.delete_one({"name":product_name})
