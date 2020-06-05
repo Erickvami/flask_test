@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 import sys
-
-client= MongoClient(host= 'mongodb://localhost:27017/') 
+import os
+client= MongoClient(host= 'mongodb://db:27017') 
 db= client.Storage
 # docs = db['Products']
 
@@ -10,7 +10,6 @@ class Products():
         pass
     def getAllProducts(self):
         products = list(db.product.find())
-        print(products)
         return {'products':'products'}
         # return {'products':products,'message':'found '+ str(products.count + ' matches'}
     
