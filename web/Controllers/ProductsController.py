@@ -2,7 +2,7 @@ from flask import jsonify,request
 from flask_restful import Resource
 from flask_expects_json import expects_json
 from Controllers.ValidationModels.ProductModel import ProductModel
-from Controllers.Instance import products,ProductBLL
+from Controllers.Instance import ProductBLL
 
 #Related operations to products entity
 class Products():
