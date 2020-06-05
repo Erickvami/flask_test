@@ -11,8 +11,9 @@ class Products():
         pass
     def getAllProducts(self):
         products = docs.find({})
-        print(products)
-        return {'products':products,'message':'found '+ str(products.count()) + ' matches'}
+        print(products.__dict__)
+        return {'products':products.__dict__}
+        # return {'products':products,'message':'found '+ str(products.count()) + ' matches'}
     
     def getProductByName(self,product_name):
         products= docs.find({"name":product_name}).limit(1)
