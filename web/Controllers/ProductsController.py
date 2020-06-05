@@ -1,16 +1,8 @@
 from flask import jsonify,request
 from flask_restful import Resource
 from flask_expects_json import expects_json
+from Controllers.ValidationModels.ProductModel import ProductModel
 from Controllers.Instance import products,ProductBLL
-newProductModel = {
-    'type':'object',
-    'properties':{
-        'name': {'type':'string'},
-        'price': {'type':'number'}, 
-        'quantity':{'type':'number'} 
-    },
-    'required':['name','price','quantity']
-}
 
 #Related operations to products entity
 class Products():
@@ -21,7 +13,7 @@ class Products():
             return jsonify(ProductBLL().getAllProducts())    
 
         #add new product
-        @expects_json(newProductModel)
+        @expects_json(ProductModel)
         def post(self):
             newProduct = request.json
             return jsonify(ProductBLL().addProduct(newProduct))            
