@@ -10,7 +10,7 @@ class Products():
         pass
     def getAllProducts(self):
         products = list(db.product.find())
-        return {'products':products}
+        return {'products':products[0].name }
         # return {'products':products,'message':'found '+ str(products.count + ' matches'}
     
     def getProductByName(self,product_name):
