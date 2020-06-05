@@ -10,12 +10,13 @@ class Products():
         pass
     def getAllProducts(self):
         products = list(db.product.find())
-        # return {'products':products}
-        return {'products':products,'message':'found '+ str(products.count()) + ' matches'}
+        return {'products':products}
+        # return {'products':products,'message':'found '+ str(products.count + ' matches'}
     
     def getProductByName(self,product_name):
-        products= db.product.find({"name":product_name}).limit(1)
-        return {'products':products,'message':'found '+ str(products.count()) + ' matches'}
+        products= list(db.product.find({"name":product_name}).limit(1))
+        return {'products':products}
+        # return {'products':products,'message':'found '+ str(products.count + ' matches'}
     
     def addProduct(self,newProduct):
         try:
