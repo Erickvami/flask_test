@@ -10,8 +10,8 @@ class Products():
         pass
     def getAllProducts(self):
         products = list(db.product.find())
-        return {'products':products}
-        # return {'products':products,'message':'found '+ str(products.count()) + ' matches'}
+        # return {'products':products}
+        return {'products':products,'message':'found '+ str(products.count()) + ' matches'}
     
     def getProductByName(self,product_name):
         products= db.product.find({"name":product_name}).limit(1)
@@ -22,7 +22,7 @@ class Products():
             db.product.insert_one(newProduct)
             return {"message":'product added successfully!',"products":self.getAllProducts()}
         except Exception as ex:
-            return {"message":'Error:' + str(ex.__dict__),"products":self.getAllProducts()}
+            return {"message":'Error:',"products":self.getAllProducts()}
     
     def updateProduct(self,product_name,updatedProduct):
         try:
