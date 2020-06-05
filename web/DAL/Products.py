@@ -9,7 +9,7 @@ class Products():
     def __init__(self):
         pass
     def getAllProducts(self):
-        products = db.product.find()
+        products = db.product.find().collection
         print(products)
         return {'products':products}
         # return {'products':products,'message':'found '+ str(products.count()) + ' matches'}
