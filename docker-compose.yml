@@ -8,3 +8,4 @@ services:
             - db
     db:
         build: './db'
+        image: 'mongo:3.6.18'
