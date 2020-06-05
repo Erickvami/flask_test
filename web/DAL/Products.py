@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 import sys
 
-client= MongoClient('mongodb://db:27017') 
+client= MongoClient(host= '192.168.56.102:' +'27017') 
 db= client.Storage
 docs = db['Products']
 docs.insert({"name":'x'})
