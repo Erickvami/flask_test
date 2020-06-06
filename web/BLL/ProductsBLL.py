@@ -29,7 +29,7 @@ class ProductBLL():
                 productFound[0]['name'] = updatedProduct['name']
                 productFound[0]['price'] = updatedProduct['price']
                 productFound[0]['quantity'] = updatedProduct['quantity']
-                if dal.updateProduct(product_name,updatedProduct):
+                if dal.updateProduct(product_name,productFound[0]):
                     return {"message":'product updated',"product":productFound[0]}
                 return {"message":'Error:Can\'t finish transaction'}
         return {"message":"product not found"}
