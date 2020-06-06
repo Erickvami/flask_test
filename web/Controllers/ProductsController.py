@@ -25,6 +25,7 @@ class Products():
             return jsonify(ProductBLL().getProductByName(product_name))
 
         #update specific product by product name
+        @expects_json(ProductModel)
         def put(self,product_name):
             return jsonify(ProductBLL().updateProduct(product_name,request.json)) 
 

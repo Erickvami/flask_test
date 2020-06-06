@@ -13,7 +13,11 @@ class ProductBLL():
     
     def addProduct(self,newProduct):
         dal= Products()
-        if dal.addProduct(newProduct):
+        if dal.addProduct({
+                "name":newProduct["name"],
+                "price":newProduct["price"],
+                "quantity":newProduct["quantity"]
+                }):
             return {"message":'product added successfully!',"products":dal.getAllProducts()} 
         
         return {"message":'Error:',"products":dal.getAllProducts()}
