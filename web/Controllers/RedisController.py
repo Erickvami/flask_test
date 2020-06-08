@@ -14,8 +14,10 @@ def addToQueue(message):
 class RedisController():
     class RedisDefault(Resource):
         def get(self):
-            x= str(type(list(r.smembers('messages').iterable)))
-            return jsonify({"messages":x})
+            x= list(r.smembers('messages'))
+            y= [member.decode('utf-8') for member in x]
+                
+            return jsonify({"messages":y})
         def post(self):
             result = addToQueue(request.json["message"])#q.enqueue(addToQueue,request.json["message"])
             return jsonify({"message":result})
