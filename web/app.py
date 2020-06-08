@@ -15,7 +15,7 @@ api.add_resource(Products.Default,'/products/',methods=['GET','POST'])
 #Transactions that require query on url by product name
 api.add_resource(Products.QueryByProductName,'/products/<string:product_name>',methods=['GET','PUT','DELETE'])
 
-api.add_resource(RedisController.Default,'/redis/',methods=['GET','POST'])
+api.add_resource(RedisController.RedisDefault,'/redis/',methods=['GET','POST'])
 #Default api route
 @app.route('/')
 def home():

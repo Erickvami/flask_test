@@ -12,7 +12,7 @@ def addToQueue(self,message):
     return True
 
 class RedisController():
-    class Default(Resource):
+    class RedisDefault(Resource):
         def get(self):
             x= list(r.smembers('messages'))
             return jsonify({"messages":x})
