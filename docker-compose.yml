@@ -13,7 +13,7 @@ services:
         image: 'redis:latest'
         ports: 
             - '6379:6379'
-        build: './redis'
+        # build: './redis'
         command: ["redis-server","/redis.conf"]
         volumes: 
             - './cofig/redis.conf:/redis.conf'
