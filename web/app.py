@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_restful import Api
 from Controllers.ProductsController import Products
+from Controllers.RedisController import RedisController
 
 #Initialize application
 app = Flask(__name__)
@@ -14,6 +15,7 @@ api.add_resource(Products.Default,'/products/',methods=['GET','POST'])
 #Transactions that require query on url by product name
 api.add_resource(Products.QueryByProductName,'/products/<string:product_name>',methods=['GET','PUT','DELETE'])
 
+api.add_resource(RedisController.Default,'/redis/',methods=['GET','POST'])
 #Default api route
 @app.route('/')
 def home():
