@@ -7,7 +7,7 @@ from rq import Queue
 r= Redis(host='redis',port=6379,db=0)
 q= Queue(connection= r)
 
-def addToQueue(self,message):
+def addToQueue(message):
     r.sadd('messages',message)
     return True
 
@@ -17,5 +17,5 @@ class RedisController():
             x= list(r.smembers('messages'))
             return jsonify({"messages":x})
         def post(self):
-            q.enqueue(addToQueue,request.json["message"])
-            return jsonify({"message":"Success"})
+            result = addToQueue(request.json["message"])#q.enqueue(addToQueue,request.json["message"])
+            return jsonify({"message":result})
