@@ -14,3 +14,6 @@ services:
         command: 'redis-server --appendomly yes'
         volumes: 
             - 'redis_data:/data'
+volumes: 
+    flask_polls_data:
+    redis_data:

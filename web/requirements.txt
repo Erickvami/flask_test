@@ -2,3 +2,5 @@ flask
 flask_restful
 flask_expects_json
 pymongo
+redis
+rq
