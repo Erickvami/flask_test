@@ -11,6 +11,7 @@ services:
         image: 'mongo:3.6.18'
     cache:
         image: 'redis'
+        build: './redis'
         command: 'redis-server --appendomly yes'
         volumes: 
             - 'redis_data:/data'
