@@ -4,7 +4,7 @@ from flask_expects_json import expects_json
 from redis import Redis
 from rq import Queue
 
-r= Redis(host='cache',port=6379,db=0)
+r= Redis(host='redis',port=6379,db=0)
 q= Queue(connection= r)
 
 def addToQueue(self,message):
